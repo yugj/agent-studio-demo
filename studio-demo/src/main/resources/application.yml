@@ -1,0 +1,57 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: studio-demo
+  main:
+    web-application-type: servlet
+
+# 下游服务配置
+downstream:
+  mvc-demo:
+    url: http://localhost:8081
+
+# 网关路由配置
+gateway:
+  routes:
+    # mvc-demo 服务路由
+    - id: mvc-demo-hello
+      name: "Hello 接口"
+      uri: http://localhost:8081
+      predicates:
+        path: /mvc/demo/hello
+        method: GET
+      
+    - id: mvc-demo-hello-name
+      name: "Hello with Name 接口"
+      uri: http://localhost:8081
+      predicates:
+        path: /mvc/demo/hello/{name}
+        method: GET
+        
+    # API V1 路由 (路径重写)
+    - id: api-v1-hello
+      name: "API V1 Hello 接口"
+      uri: http://localhost:8081
+      predicates:
+        path: /api/v1/demo/hello
+        method: GET
+      rewrite:
+        from: /api/v1/demo/hello
+        to: /mvc/demo/hello
+        
+    - id: api-v1-hello-name
+      name: "API V1 Hello with Name 接口"  
+      uri: http://localhost:8081
+      predicates:
+        path: /api/v1/demo/hello/{name}
+        method: GET
+      rewrite:
+        from: /api/v1/demo/(.*)
+        to: /mvc/demo/$1
+
+logging:
+  level:
+    com.example.studiodemo: DEBUG
+    org.springframework.cloud.gateway: DEBUG

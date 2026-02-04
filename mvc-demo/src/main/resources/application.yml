@@ -1,0 +1,10 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: mvc-demo
+
+logging:
+  level:
+    com.example.mvcdemo: DEBUG

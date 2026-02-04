@@ -1,0 +1,18 @@
+### mvc-demo 直接访问测试
+### 端口 8081
+
+### 1. Hello 接口
+GET http://localhost:8081/mvc/demo/hello
+Accept: application/json
+
+###
+
+### 2. Hello with name 接口
+GET http://localhost:8081/mvc/demo/hello/world
+Accept: application/json
+
+###
+
+### 3. Hello with Chinese name
+GET http://localhost:8081/mvc/demo/hello/张三
+Accept: application/json

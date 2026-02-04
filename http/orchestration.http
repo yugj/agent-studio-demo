@@ -1,0 +1,34 @@
+### studio-demo 编排功能测试
+### 端口 8080
+
+### ========== 单接口编排调用 ==========
+
+### 1. 编排调用 - Hello 接口
+GET http://localhost:8080/orchestration/call/hello
+Accept: application/json
+
+###
+
+### 2. 编排调用 - Hello with name 接口
+GET http://localhost:8080/orchestration/call/hello/orchestration-test
+Accept: application/json
+
+###
+
+### 3. 编排调用 - Hello with Chinese name
+GET http://localhost:8080/orchestration/call/hello/编排测试
+Accept: application/json
+
+###
+
+### ========== 聚合调用测试 ==========
+
+### 4. 聚合调用 - 同时调用多个接口并合并结果
+GET http://localhost:8080/orchestration/aggregate/聚合测试
+Accept: application/json
+
+###
+
+### 5. 聚合调用 - English name
+GET http://localhost:8080/orchestration/aggregate/aggregate-demo
+Accept: application/json
